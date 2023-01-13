@@ -2,6 +2,7 @@ package com.example.LMSbackend.Enums;
 
 public enum Genre {
 
+    DRAMA,
     ROMANTIC,
     HISTROY,
     EDUCATION,

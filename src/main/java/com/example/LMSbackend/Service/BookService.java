@@ -42,9 +42,13 @@ public class BookService {
             author.setBookWritten(currentList);
 
             authorRepository.save(author);
-            bookRepository.save(book);
+
+            //here we don't need to save the book again because it's been saved by automatically when
+            // we saved author
+           // bookRepository.save(book);
         }catch (Exception e){
             log.info("There is been caused in the bookCreate layer");
+            return "Book is not created yet";
         }
 
         return "Successfully book has been saved in the database";

@@ -4,9 +4,12 @@ import com.example.LMSbackend.Converter.AuthorConverter;
 import com.example.LMSbackend.Models.Author;
 import com.example.LMSbackend.Repository.AuthorRepository;
 import com.example.LMSbackend.RequestDto.AuthorRequestDto;
+import com.example.LMSbackend.ResponseDto.AuthorResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -40,9 +43,20 @@ public class AuthorService {
             authorRepository.save(author);
         }catch (Exception e){
             log.info("AuthorCreate has caused of error");
+            return "Author is not created yet";
         }
 
         return "Successfully author is has been saved in the database";
+    }
+
+    public List<AuthorResponseDto> findAuthorByName(String name){
+
+        List<Author> authors = authorRepository.findByName(name);
+
+        List<AuthorResponseDto> authorResponseDtos = AuthorConverter.convertAuthorDtoToEntity(authors);
+
+        return authorResponseDtos;
+
     }
 
 }
